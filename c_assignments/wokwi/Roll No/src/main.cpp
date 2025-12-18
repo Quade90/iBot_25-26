@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 int pinLED = 12;
 
 void setup()
