@@ -22,7 +22,8 @@ def pencil_sketch(img_color):
     img_blur_inv = 255 - img_blur
     img_sketch = cv2.divide(img_gray, img_blur_inv, scale=256.0) # Blend grayscale and inverted blur to create sketch
 
-    cv2.imwrite("pencil_sketch.png", img_sketch)
+    output_path = path.with_name(f"{path.stem}_sketch{path.suffix}")
+    cv2.imwrite(str(output_path), img_sketch)
 
     tandem_display(img_color, img_sketch)
 
