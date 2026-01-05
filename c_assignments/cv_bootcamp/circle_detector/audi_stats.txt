@@ -1,0 +1,8 @@
+Number of circles detected: 4
+1.pos = (277,215), r = 38px
+2.pos = (398,215), r = 39px
+3.pos = (338,215), r = 39px
+4.pos = (457,215), r = 39px
+Average radius: 38.75px
+Max radius: 39px
+Min radius: 38px

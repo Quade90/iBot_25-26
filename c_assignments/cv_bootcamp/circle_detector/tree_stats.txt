@@ -1,0 +1,13 @@
+Number of circles detected: 9
+1.pos = (322,205), r = 99px
+2.pos = (675,411), r = 82px
+3.pos = (461,387), r = 114px
+4.pos = (597,248), r = 69px
+5.pos = (260,380), r = 80px
+6.pos = (778,239), r = 102px
+7.pos = (700,587), r = 89px
+8.pos = (850,425), r = 89px
+9.pos = (680,80), r = 80px
+Average radius: 89.33px
+Max radius: 114px
+Min radius: 69px
