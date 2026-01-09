@@ -4,7 +4,7 @@
 This project detects circles in **images and videos** using the Hough Circle Transform with OpenCV.
 It features an **interactive GUI** that allows users to tune detection parameters in real time, with the option to auto-tune for optimal results. Once circles are detected, a set of statistics related to the image is displayed. After suitable parameters are chosen, users can save the processed image along with its statistics file, or export the processed video.
 
---
+---
 
 ## How to Run
 
@@ -16,7 +16,7 @@ When prompted:
  - Click **`Load Image`** if image is desired
  - Click **`Load Video`** if video is desired
 
---
+---
 
 ## Image 
 - Upon clicking **`Load Image`** a dialog box will open and user must choose an image
@@ -31,13 +31,13 @@ Saved filenames follow the format
 <original_name>_circled.png
 <original_name>_stats.txt
 
---
+---
 
 ## Video
 - Upon clicking **`Load Video`** a dialog box will open and user must choose a video
 - Once chosen the video will be auto-tuned and saved into the **Outputs** folder where the user can play it
 
---
+---
 
 ## Features
 - Image & video loading
@@ -55,7 +55,7 @@ Saved filenames follow the format
 - Built-in legend panel
 - GUI built with Tkinter
 
---
+---
 
 ## Dependencies
 - Python 3.x
@@ -64,14 +64,14 @@ Saved filenames follow the format
 - Tkinter
 - Pillow **`PIL`**
 
---
+---
 
 ## Observations
 - Hough circle detector is very sensitive to param2
 - min_radius and max_radius can have an effect on already detected circles, even if they're radii are still within range, new circles can also form similarily
 - Auto tuning helps massively, to instantly get best circles, or make small changes to and then get best circles
 
---
+---
 
 ## Challenges
 - Finding best Hough circle detector parameters
