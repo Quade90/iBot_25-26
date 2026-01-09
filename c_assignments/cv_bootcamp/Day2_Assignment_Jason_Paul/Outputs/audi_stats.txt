@@ -1,0 +1,18 @@
+Circles detected: 4
+
+1. Small circle: x=277, y=215, radius=38px
+2. Small circle: x=398, y=215, radius=47px
+3. Small circle: x=458, y=214, radius=37px
+4. Small circle: x=337, y=215, radius=38px
+
+Min radius: 37 px
+Max radius: 47 px
+Avg radius: 40.00 px
+
+Parameters used:
+  dp: 1.2
+  minDist: 57
+  param1: 120
+  param2: 35
+  minRadius: 23
+  maxRadius: 115

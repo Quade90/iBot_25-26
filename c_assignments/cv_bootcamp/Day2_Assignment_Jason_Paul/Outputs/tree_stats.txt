@@ -1,0 +1,27 @@
+Circles detected: 13
+
+1. Large circle: x=457, y=400, radius=122px
+2. Medium circle: x=322, y=205, radius=98px
+3. Medium circle: x=675, y=407, radius=85px
+4. Medium circle: x=309, y=532, radius=85px
+5. Large circle: x=766, y=205, radius=138px
+6. Medium circle: x=850, y=412, radius=88px
+7. Small circle: x=597, y=248, radius=69px
+8. Medium circle: x=259, y=374, radius=76px
+9. Medium circle: x=711, y=586, radius=82px
+10. Medium circle: x=153, y=124, radius=80px
+11. Medium circle: x=680, y=76, radius=80px
+12. Medium circle: x=92, y=309, radius=100px
+13. Small circle: x=155, y=479, radius=74px
+
+Min radius: 69 px
+Max radius: 138 px
+Avg radius: 90.54 px
+
+Parameters used:
+  dp: 1.2
+  minDist: 80
+  param1: 120
+  param2: 75
+  minRadius: 32
+  maxRadius: 161
