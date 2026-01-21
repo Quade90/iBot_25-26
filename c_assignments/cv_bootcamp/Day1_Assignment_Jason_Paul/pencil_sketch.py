@@ -7,7 +7,7 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 
 def pencil_sketch(img_color, kernel_size=(21, 21)):
-    """Converts a color image to a pencil sketch.
+    """Converts a color image to a pencil sketch.vi
 
     Parameters:
         img_color (numpy.ndarray): Input color image in BGR format.
@@ -169,10 +169,11 @@ class SketchGUI:
         self.img_color = None
         self.img_tk = None
 
-        # ================= TOP: MODE SELECT =================
+        # Top frame for buttons
         mode_frame = tk.Frame(root)
         mode_frame.pack(pady=10)
 
+        # Top buttons
         self.color_btn = tk.Button(
             mode_frame,
             text="Colour",
@@ -191,7 +192,6 @@ class SketchGUI:
         )
         self.gray_btn.pack(side="left", padx=10)
 
-        # ================= LOAD IMAGE =================
         tk.Button(
             root,
             text="Load Image",
@@ -199,7 +199,7 @@ class SketchGUI:
             command=self.load_image
         ).pack(pady=5)
 
-        # ================= IMAGE DISPLAY =================
+        # Image display area
         self.image_frame = tk.Frame(root, width=1200, height=600)
         self.image_frame.pack(expand=True, fill="both", padx=20, pady=10)
         self.image_frame.pack_propagate(False)  # <- THIS IS THE MAGIC LINE
@@ -207,7 +207,7 @@ class SketchGUI:
         self.panel = tk.Label(self.image_frame)
         self.panel.place(relx=0.5, rely=0.5, anchor="center")
 
-        # ================= SLIDER =================
+        # Slider for kernel size
         tk.Scale(
             root,
             from_=3,
@@ -220,10 +220,11 @@ class SketchGUI:
             length=600
         ).pack(pady=10)
 
-        # ================= BOTTOM: SAVE BUTTONS =================
+        # Save frame for buttons
         save_frame = tk.Frame(root)
         save_frame.pack(pady=15)
-
+        
+        # Save buttons
         tk.Button(
             save_frame,
             text="Save As",
@@ -248,7 +249,7 @@ class SketchGUI:
         if not path:
             return
 
-        self.image_path = Path(path)   # ← ADD THIS
+        self.image_path = Path(path)  
         self.img_color = cv2.imread(path)
         self.update_sketch()
 
@@ -407,4 +408,3 @@ except ValueError as e:
 
 except cv2.error as e:
     print("OpenCV error:", e)
-
