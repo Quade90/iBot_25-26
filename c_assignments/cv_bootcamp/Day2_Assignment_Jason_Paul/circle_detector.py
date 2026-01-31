@@ -22,7 +22,7 @@ def preprocess_image(img):
     blur = cv2.medianBlur(gray, 5)
     return blur   
 
-def detect_circles(img, blur, base_params, param2=None, min_r=None, max_r=None):
+def detect_circles(img, blur, base_params, param2=None, min_r=None, max_r=None, min_dist=None):
     """Detect and label circles in the image using Hough Circle Transform. Categorizes circles by size.
     
     Parameters:
@@ -32,6 +32,7 @@ def detect_circles(img, blur, base_params, param2=None, min_r=None, max_r=None):
         param2 (int, optional): Accumulator threshold for circle detection.
         min_r (int, optional): Minimum circle radius.
         max_r (int, optional): Maximum circle radius.
+        min_dist (int, optional): Minimum distance between detected circle centers.
 
     Returns:
         numpy.ndarray: Image with detected circles labeled.
@@ -52,6 +53,8 @@ def detect_circles(img, blur, base_params, param2=None, min_r=None, max_r=None):
         HOUGH_PARAMS["minRadius"] = min_r
     if max_r is not None:
         HOUGH_PARAMS["maxRadius"] = max_r
+    if min_dist is not None:
+        HOUGH_PARAMS["minDist"] = min_dist
 
 
     # Detect circles using Hough Circle Transform
@@ -85,12 +88,14 @@ def detect_circles(img, blur, base_params, param2=None, min_r=None, max_r=None):
             tx = i[0] + int(i[2] / np.sqrt(2)) + 10
             ty = i[1] + int(i[2] / np.sqrt(2)) + 5
 
-            if i[2] > min_radius:
-                color = (255, 0, 0)  # Blue for small circles
-            if i[2] > colour_range * 0.33 + min_radius:
-                color = (0, 255, 255)  # Yellow for medium circles
-            if i[2] > colour_range * 0.66 + min_radius:
-                color = (0, 0, 255)  # Red for large circles
+            r = i[2]
+
+            if r <= (colour_range * 0.33 + min_radius):
+                color = (255, 0, 0)      # Small (blue)
+            elif r <= (colour_range * 0.66 + min_radius):
+                color = (0, 255, 255)    # Medium (yellow)
+            else:
+                color = (0, 0, 255)      # Large (red)
             
             cv2.circle(circled_img, (i[0], i[1]), i[2], color, 2)
             cv2.circle(circled_img, (i[0], i[1]), 2, (0, 0, 255), -1)
@@ -119,7 +124,7 @@ def auto_tune_hough_params(gray):
 
     min_radius = int(min_dim * 0.05)
     max_radius = int(min_dim * 0.25)
-    min_dist = int(max_radius * 0.5)
+    min_dist = int(max_radius * 0.45)
 
     for param2 in range(35, 80, 5):
         circles = cv2.HoughCircles(
@@ -198,8 +203,10 @@ def update_image(*args):
         BASE_PARAMS,
         param2=p2,
         min_r=min_r,
-        max_r=max_r
+        max_r=max_r,
+        min_dist=mindist_var.get()
     )
+
 
     global latest_circled, latest_stats
     latest_circled = display
@@ -375,6 +382,12 @@ def load_image():
     param2_scale.config(state="normal")
     minr_scale.config(state="normal")
     maxr_scale.config(state="normal")
+    mindist_var.set(BASE_PARAMS["minDist"])
+    minDist_scale.config(
+        to=int(min(img.shape[:2]) * 0.5),
+        state="normal"
+    )
+
 
     # Force Tkinter to calculate real widget sizes
     root.update_idletasks()
@@ -545,6 +558,7 @@ def auto_tune_button():
     param2_var.set(BASE_PARAMS["param2"])
     minr_var.set(BASE_PARAMS["minRadius"])
     maxr_var.set(BASE_PARAMS["maxRadius"])
+    mindist_var.set(BASE_PARAMS["minDist"])
 
     stats_var.set("Parameters auto-tuned.")
 
@@ -616,6 +630,7 @@ legend_row(legend_frame, "red",    "Large")
 param2_var = tk.IntVar()
 minr_var = tk.IntVar()
 maxr_var = tk.IntVar()
+mindist_var = tk.IntVar()
 
 param2_scale = tk.Scale(
     frame_ctrl,
@@ -652,6 +667,20 @@ maxr_scale = tk.Scale(
     state="disabled",
     command=update_image
 )
+
+minDist_scale = tk.Scale(
+    frame_ctrl,
+    label="minDist",
+    from_=5,
+    to=200,
+    orient=tk.HORIZONTAL,
+    variable=mindist_var,
+    length=500,
+    state="disabled",
+    command=update_image
+)
+minDist_scale.pack(fill="x")
+
 
 param2_scale.pack(fill="x")
 minr_scale.pack(fill="x")
