@@ -42,7 +42,7 @@ Saved filenames follow the format
 ## Features
 - Image & video loading
 - Automatic Hough parameter tuning
-- Live slider controls (param2, min/max radius)
+- Live slider controls (param2, min/max radius, min dist)
 - Size-based circle coloring
     - Blue = small
     - Yellow = medium
