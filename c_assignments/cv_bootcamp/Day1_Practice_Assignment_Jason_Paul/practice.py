@@ -80,9 +80,9 @@ print(f"Batched shape:{single_image.shape}")
 single_image = np.transpose(single_image, (0, 3, 1, 2))
 print(f"Channel-first shape:{single_image.shape}")
 input()
-print("-----\n")
 
-print("\nx-------------x---- Section-2 ----x-------------x")
+
+print("x-------------x---- Section-2 ----x-------------x")
 
 print("\nExercise 2.1: Create a Dataset Dataframe\n")
 np.random.seed(42)
@@ -162,9 +162,8 @@ print(f"Test: {len(x_test)} ({len(x_test)/len(df)*100:.0f}%)")
 print("\nDistribution check:")
 print(df.groupby(['split', 'label']).size().unstack(fill_value=0))
 input()
-print("-----\n")
 
-print("\nx-------------x---- Section-3 ----x-------------x")
+print("x-------------x---- Section-3 ----x-------------x")
 
 print("\nExercise 3.1: Create and Save a Synthetic Image\n")
 
@@ -252,9 +251,8 @@ for ax, img, title in zip(axes.flat, images, titles):
 plt.tight_layout()
 plt.show()
 input()
-print("-----\n")
 
-print("\nx-------------x---- Section-4 ----x-------------x")
+print("x-------------x---- Section-4 ----x-------------x")
 
 print("\nExercise 4.1: Image Statistics with Numpy\n")
 
@@ -374,9 +372,8 @@ print(f"Images: \n{df}")
 
 print(f"No. of images in each brightness category: \n{df['category'].value_counts()}")
 input()
-print("-----\n")
 
-print("\nx-------------x---- Final_Boss ----x-------------x")
+print("x-------------x---- Final_Boss ----x-------------x")
 
 print("\nFinal Challenge: Complete preprocessing Function\n")
         
